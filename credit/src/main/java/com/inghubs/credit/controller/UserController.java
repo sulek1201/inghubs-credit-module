@@ -4,7 +4,7 @@ import com.inghubs.credit.entity.User;
 import com.inghubs.credit.model.LoginRequest;
 import com.inghubs.credit.model.TokenResponse;
 import com.inghubs.credit.security.JwtTokenUtil;
-import com.inghubs.credit.service.UserServiceImpl;
+import com.inghubs.credit.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -32,8 +32,6 @@ public class UserController {
         User user = userService.findByUserName(request.getUsername());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), request.getPassword()));
         final String token = jwtTokenUtil.generateToken(user);
-        System.out.println(JwtTokenUtil.parseUserNameFromJwt(token));
-        System.out.println(JwtTokenUtil.parseUserRoleFromJwt(token));
         return ResponseEntity.ok(new TokenResponse(user.getUsername(), token));
     }
 

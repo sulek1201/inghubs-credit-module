@@ -1,10 +1,10 @@
-package com.inghubs.credit.service;
+package com.inghubs.credit.service.impl;
 
 import com.inghubs.credit.entity.User;
 import com.inghubs.credit.repository.UserRepository;
 import com.inghubs.credit.security.JwtTokenUtil;
+import com.inghubs.credit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -14,10 +14,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private  BCryptPasswordEncoder bCryptPasswordEncoder;
-
 
     @Override
     public User findByUserName(String userName) {
