@@ -19,6 +19,7 @@ public class JwtTokenUtil {
     public static final String SIGNING_KEY = "sulek";
     public static final String USERNAME = "sub";
     public static final String USER_ROLE = "userRole";
+    public static final String USER_ID = "userId";
     public static final String BEARER = "Bearer";
 
     public String getUsernameFromToken(String token) {
@@ -47,13 +48,14 @@ public class JwtTokenUtil {
     }
 
     public String generateToken(User user) {
-        return doGenerateToken(user.getUsername(), user.getUserRole());
+        return doGenerateToken(user.getUsername(), user.getUserRole(), user.getId());
     }
 
-    private String doGenerateToken(String subject, String role) {
+    private String doGenerateToken(String subject, String role, Long userId) {
 
         Claims claims = Jwts.claims().setSubject(subject);
         claims.put("userRole", role);
+        claims.put("userId", userId);
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -85,6 +87,14 @@ public class JwtTokenUtil {
                 .setSigningKey(SIGNING_KEY)
                 .parseClaimsJws(jwt.replace(BEARER, ""));
         return parsedToken.getBody().get(USER_ROLE, String.class);
+    }
+
+    public static Long parseUserIdFromJwt(String jwt) {
+
+        Jws<Claims> parsedToken = Jwts.parser()
+                .setSigningKey(SIGNING_KEY)
+                .parseClaimsJws(jwt.replace(BEARER, ""));
+        return parsedToken.getBody().get(USER_ID, Long.class);
     }
 
 }
