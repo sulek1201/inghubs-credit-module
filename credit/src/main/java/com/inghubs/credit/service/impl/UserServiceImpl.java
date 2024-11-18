@@ -24,9 +24,4 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-    @Override
-    public Long getUserIdByToken(String jwtToken) {
-        String userName = JwtTokenUtil.parseUserNameFromJwt(jwtToken);
-        return findByUserName(userName).getId();
-    }
 }

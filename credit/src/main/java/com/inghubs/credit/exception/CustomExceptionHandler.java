@@ -34,4 +34,12 @@ public class CustomExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse("Get Loan process is failed", details);
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(LoanPaymentException.class)
+    public ResponseEntity<?> getLoanFailed(LoanPaymentException loanPaymentException) {
+        List<String> details = new ArrayList<>();
+        details.add(loanPaymentException.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse("Loan Payment process is failed", details);
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
 }

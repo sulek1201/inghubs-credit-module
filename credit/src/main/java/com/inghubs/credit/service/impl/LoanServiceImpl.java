@@ -41,7 +41,7 @@ public class LoanServiceImpl implements LoanService {
 
     private final static BigDecimal MIN_INTEREST_RATE = BigDecimal.valueOf(0.1);
     private final static BigDecimal MAX_INTEREST_RATE = BigDecimal.valueOf(0.5);
-    private static final List<Integer> ALLOWED_INSTALLMENT_COUNTS = List.of(6, 9, 12, 24);
+    private static final List<Integer> ALLOWED_INSTALLMENT_COUNTS = List.of(3, 6, 9, 12, 24);
 
 
     @Transactional

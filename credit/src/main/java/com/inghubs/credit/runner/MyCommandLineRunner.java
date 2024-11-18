@@ -10,8 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Component
 @AllArgsConstructor
@@ -34,6 +33,15 @@ public class MyCommandLineRunner implements CommandLineRunner {
                 .build();
 
         userRepository.save(user);
+
+        User adminUser = User.builder()
+                .id(2L)
+                .password(bCryptPasswordEncoder.encode("1234"))
+                .username("admin")
+                .userRole("ROLE_ADMIN")
+                .build();
+
+        userRepository.save(adminUser);
 
         Customer customer = Customer.builder()
                 .id(1L)

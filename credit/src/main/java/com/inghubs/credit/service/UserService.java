@@ -9,5 +9,4 @@ public interface UserService {
 
     User findByUserName(String userName);
 
-    Long getUserIdByToken(String jwtToken);
 }

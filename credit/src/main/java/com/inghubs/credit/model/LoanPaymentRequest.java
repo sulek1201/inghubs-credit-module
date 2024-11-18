@@ -7,10 +7,8 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class CreateLoanRequest {
-    private Long customerId;
+public class LoanPaymentRequest {
+    private Long loanId;
     private BigDecimal amount;
-    private BigDecimal interestRate;
-    private Integer numberOfInstallments;
 }
 
